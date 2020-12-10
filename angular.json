@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "LimeHome-Challenge"
+    }
+  },
+  "defaultProject": "LimeHome-Challenge",
+  "cli": {
+    "analytics": "cb24271b-2e51-402a-9fc7-2ed15063d8f0"
+  }
 }

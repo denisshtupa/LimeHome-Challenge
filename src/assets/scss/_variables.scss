@@ -1,0 +1,37 @@
+
+// Blues
+$db-light-blue: #f2fbfd;
+$db-status-blue: #64bbe3;
+$db-blue: #00bceb;
+
+//Accents
+$db-green: #6ebe4a;
+$db-orange: #fbab18;
+$db-red: #e24d45;
+
+//Status
+$db-status-turquoise: #14a792;
+$db-status-green: #6cc04a;
+$db-status-yellow: #ffcc00;
+$db-status-orange: #f7941d;
+$db-status-red: #e2231a;
+
+$primary:       $db-blue !default;
+$success:       $db-green !default;
+$info:          $db-status-blue !default;
+$warning:       $db-orange !default;
+$danger:        $db-red !default;
+
+
+$toolbar-background-color: #ebeae6;
+
+
+// Extra small screen / phone
+$screen-xs-min:                  360px !default;;
+$screen-xs-max:                  480px !default;
+
+
+// Medium screen / desktop
+$screen-md-min:                  992px !default;
+$screen-md-max:                  1022px !default;
+
