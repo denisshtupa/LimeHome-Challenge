@@ -17,9 +17,12 @@
 @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
 
   /* CSS */
-  .toolbar {
-    width: 100%
-  }
+  // .toolbar {
+  //   width: 113%;
+  // }
+  // .content{
+  //   width: 100%
+  // }
 
 }
 
@@ -28,7 +31,10 @@
 
   /* CSS */
   .toolbar {
-    width: 100%
+    width: 113%;
+  }
+  .content{
+    width: 70%
   }
 
 }
