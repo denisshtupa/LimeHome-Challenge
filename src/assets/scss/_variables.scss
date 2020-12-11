@@ -16,19 +16,13 @@ $db-status-yellow: #ffcc00;
 $db-status-orange: #f7941d;
 $db-status-red: #e2231a;
 
-$primary:       $db-blue !default;
-$success:       $db-green !default;
-$info:          $db-status-blue !default;
-$warning:       $db-orange !default;
-$danger:        $db-red !default;
-
 
 $toolbar-background-color: #ebeae6;
 
 
 // Extra small screen / phone
 $screen-xs-min:                  360px !default;;
-$screen-xs-max:                  480px !default;
+$screen-xs-max:                  550px !default;
 
 
 // Medium screen / desktop

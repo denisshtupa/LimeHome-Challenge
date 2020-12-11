@@ -1,19 +1,34 @@
 /* You can add global styles to this file, and also import other style files */
 
 
-
-html {
-  overflow-x: hidden;
+* {
   font-family: verdana;
+  max-width: 400px !important;
+  max-height: 600px !important;
+  justify-content: center;
 }
 
-
-
 @import 'assets/scss/_variables.scss';
-
 @import 'assets/scss/_main.scss';
-
-@import 'assets/scss/_card.scss';
-
 @import 'assets/scss/_map.scss';
 
+
+// desktop, laptop
+@media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+
+  /* CSS */
+  .toolbar {
+    width: 100%
+  }
+
+}
+
+// phones
+@media (min-width: $screen-xs-min) and (max-width: $screen-xs-max) {
+
+  /* CSS */
+  .toolbar {
+    width: 100%
+  }
+
+}

@@ -1,0 +1,96 @@
+.card-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  position: relative;
+  top: -237px;
+  left: -6px;
+}
+
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 136px 134px;
+  grid-template-rows: 148px 55px;
+  grid-template-areas: "one two" "three three";
+  position: relative;
+}
+
+@media (max-width: $screen-xs-max) {
+  .wrapper {
+    grid-template-areas:
+      "one two"
+      "three three";
+  }
+}
+
+@media (max-width: $screen-md-min) {
+  .wrapper {
+    grid-template-areas:
+      "one two"
+      "three three";
+  }
+}
+
+.block1 {
+  grid-area: one;
+  background-color: white;
+  overflow: hidden;
+
+  img {
+    border-radius: 3px;
+  }
+
+  img:hover {
+    opacity: 0.8;
+    cursor: pointer;
+    transform: scale(1.02);
+  }
+}
+
+.block2 {
+  grid-area: two;
+  background-color: white;
+  overflow: hidden;
+  font-size: 11px;
+  font-size-adjust: 0.58;
+
+  span {
+    margin: 1px;
+    line-height: 25px;
+  }
+}
+
+.block3 {
+  grid-area: three;
+  background-color: white;
+  overflow: hidden;
+
+}
+
+.block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.button-orange {
+  display: inline-block;
+  background-color: $db-orange !important;
+  color: white;
+  width: 92%;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid $db-status-yellow;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  cursor: pointer;
+  line-height: 1.5;
+  border-radius: .25rem;
+
+  &:hover {
+    opacity: 0.75;
+  }
+}

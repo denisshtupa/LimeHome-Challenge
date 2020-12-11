@@ -1,6 +1,27 @@
-<h4> gogo go</h4>
+<div #map style="height:700px;width:700px"></div>
 
-<h3> 
+<div class="card-container" >
 
-    go go go
-</h3>
+  <div class="wrapper" *ngFor="let hotelsObject of this.hotelsObjectArray; let idx;" [id]="hotelsObject.id" style="display:none">
+    <div class="block block1">
+      <img [src]="hotelsObject.roomImage" [width]="'115'" [height]="'140'">
+    </div>
+    <div class="block2">
+
+      <span><strong>{{hotelsObject.city}}</strong></span><br>
+      <span><strong>{{hotelsObject.street}}</strong></span><br>
+
+      <span> {{hotelsObject.distanceToCenter}}</span><br><br>
+
+      <span><strong>{{hotelsObject.price}}</strong></span><br>
+      <span>{{hotelsObject.designDesc}}</span>
+    </div>
+    <div class="block block3">
+
+      <button type="button" class="button-orange">Book</button>
+
+    </div>
+  </div>
+
+
+</div>
