@@ -1,8 +1,10 @@
+import { Constants } from './../../shared/constants';
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
-import { IHotelDetails } from '../app.component';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import swal from 'sweetalert2';
+import { IHotelDetails } from 'src/shared/interface/interface';
 declare var google: any;
 declare var $: any;
-
 
 @Component({
   selector: 'map',
@@ -10,73 +12,88 @@ declare var $: any;
 })
 
 export class MapComponent implements AfterViewInit {
-
   @ViewChild("map") mapRef: ElementRef;
 
   private centerMunich: Object = { lat: 48.137154, lng: 11.576124 };
-  private myHome: Object = { lat: 48.12268059537522, lng: 11.562643168778207 };
-  private marker: Object;
   public map: Object;
+  public display: string = "none";
+  public userForm: FormGroup;
 
-  public idd;
+  public hotelsObjectArray: IHotelDetails[] = Constants.hotels;
+  public locationsMunich: any[] = Constants.locations;
 
-  public hotelsObjectArray: IHotelDetails[] = [
-    { id: 0, city: "Munich", street: "Marienplatz", distanceToCenter: "0.1 km FROM CENTER", price: "$98", designDesc: "Design may vary", roomImage: "assets/img/room1.png" },
-    { id: 1, city: "Munich", street: "Dreimuhlenstrasse", distanceToCenter: "1.6 km FROM CENTER", price: "$143", designDesc: "Design may change", roomImage: "assets/img/room2.png" },
-    { id: 2, city: "Munich", street: "Olympiapark", distanceToCenter: "1.5 km FROM CENTER", price: "$48", designDesc: "Design may vary", roomImage: "assets/img/room3.png" }
-  ];
-
-  public locationsMunich: any = [
-    ["Marienplatz", "48.137154", "11.576124", 0, "assets/img/design_assets_home-icon.svg"],
-    ["My Home", "48.122680595375", "11.5626431687782", 1, "assets/img/design_assets_home-icon.svg"],
-    ["Olympiapark", "48.1764235294989", "11.5513759002564", 2, "assets/img/design_assets_home-icon.svg"]
-  ]
-
-
-  private iconsEdit(id: number) {
-    // this.locationsMunich[id][4]
-
+  constructor(private _fb: FormBuilder) {
+    this.initUserForm();
   }
 
   ngAfterViewInit() {
+    this.map = new google.maps.Map(this.mapRef.nativeElement, {
+      zoom: 12,
+      center: this.centerMunich
+    });
 
-    setTimeout(() => {
-      this.map = new google.maps.Map(this.mapRef.nativeElement, {
-        zoom: 12,
-        center: this.centerMunich
+    for (var i = 0; i < this.locationsMunich.length; i++) {
+      let marker = new google.maps.Marker({
+        position: new google.maps.LatLng(this.locationsMunich[i][1], this.locationsMunich[i][2]),
+        options: {
+          icon: {
+            url: this.locationsMunich[i][4],
+            scaledSize: new google.maps.Size(30, 30)
+          }
+        },
+        map: this.map
       });
 
+      google.maps.event.addListener(marker, 'click', (function (marker, i) {
+        
+        return function () {          
+          marker.setIcon("assets/img/design_assets_home-icon-active.svg");
+          let arrayIndexes: number[] = [0, 1, 2];
+          arrayIndexes = arrayIndexes.filter(el => el != i);
+          arrayIndexes.forEach(nr => {
+            $('#' + nr).hide();
+          })
+          $('#' + i).show();
+        }
 
-      for (var i = 0; i < this.locationsMunich.length; i++) {
-
-        this.marker = new google.maps.Marker({
-          position: new google.maps.LatLng(this.locationsMunich[i][1], this.locationsMunich[i][2]),
-          options: {
-            icon: {
-              url: this.locationsMunich[i][4],
-              scaledSize: new google.maps.Size(30, 30)
-            }
-          },
-          map: this.map
-        });
-
-        google.maps.event.addListener(this.marker, 'click', (function (marker, i) {
-
-          return function () {
-            let arrayIndexes: number[] = [0, 1, 2];
-            arrayIndexes = arrayIndexes.filter(el => el != i);
-
-            arrayIndexes.forEach(nr => {
-              $('#' + nr).hide();
-            })
-            $('#' + i).show();
-          }
-
-        })(this.marker, i));
-      }
-
-    }, 1000);
+      })(marker, i));
+    }
   }
 
+
+  public openBookModal(): void {
+    this.display = "block";
+  }
+
+  public confirmBooking(): void {
+    this.displayToastMessageSuccess("Thank you for booking to our hotel")
+    this.display = "none";
+    this.initUserForm();
+  }
+
+  public closePopup(): void {
+    this.display = "none";
+    this.initUserForm();
+  }
+
+  private displayToastMessageSuccess(successMessage: string, title?: string): void {
+    swal({
+      title: title || 'Success !',
+      text: successMessage,
+      type: 'success',
+      timer: 8000,
+      showConfirmButton: false,
+      toast: true,
+      position: 'top-right'
+    });
+  }
+
+  private initUserForm(): void {
+    this.userForm = this._fb.group({
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
+      address: ['', Validators.required]
+    });
+  }
 
 }

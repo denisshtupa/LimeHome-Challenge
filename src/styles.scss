@@ -1,24 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 
 
-* {
-  font-family: verdana;
-  max-width: 400px !important;
-  max-height: 600px !important;
-  justify-content: center;
-}
 
 @import 'assets/scss/_variables.scss';
 @import 'assets/scss/_main.scss';
 @import 'assets/scss/_map.scss';
 
 
-// desktop, laptop
-@media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
 
-  /* CSS */
+.map-area {
+  height: 800px !important;
+  width: 1000px !important;
+}
+
+// desktop, laptop
+@media (max-width: 800px) {
+
+  // /* CSS */
   // .toolbar {
-  //   width: 113%;
+  //   width: 100%;
   // }
   // .content{
   //   width: 100%
@@ -27,14 +27,23 @@
 }
 
 // phones
-@media (min-width: $screen-xs-min) and (max-width: $screen-xs-max) {
+@media (max-width: 480px) {
 
   /* CSS */
   .toolbar {
-    width: 113%;
-  }
-  .content{
-    width: 70%
+    max-width: 162%;
   }
 
+  // .content{
+  //   width: 70%
+  // }
+
+}
+
+
+html {
+  font-family: verdana;
+  width: 400px !important;
+  height: 600px !important;
+  justify-content: center;
 }

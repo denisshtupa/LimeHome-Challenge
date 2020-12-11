@@ -1,27 +1,37 @@
-<div #map style="height:700px;width:500px"></div>
+<div #map style="height:700px;width:900px"></div>
 
-<div class="card-container" >
-
-  <div class="wrapper" *ngFor="let hotelsObject of this.hotelsObjectArray; let idx;" [id]="hotelsObject.id" style="display:none">
+<div class="card-container">
+  <div class="wrapper" *ngFor="let hotelsObject of this.hotelsObjectArray; let idx;" [id]="hotelsObject.id"
+    style="display:none">
     <div class="block block1">
       <img [src]="hotelsObject.roomImage" [width]="'115'" [height]="'140'">
     </div>
     <div class="block2">
-
       <span><strong>{{hotelsObject.city}}</strong></span><br>
       <span><strong>{{hotelsObject.street}}</strong></span><br>
-
       <span> {{hotelsObject.distanceToCenter}}</span><br><br>
-
       <span><strong>{{hotelsObject.price}}</strong></span><br>
       <span>{{hotelsObject.designDesc}}</span>
     </div>
     <div class="block block3">
-
-      <button type="button" class="button-orange">Book</button>
-
+      <button type="button" class="button-orange" (click)="openBookModal()">Book</button>
     </div>
   </div>
+</div>
 
+<div class="book-form" [style.display]="this.display">
+  <p>Please insert your personal information:</p>
+  <div [formGroup]="this.userForm">
+    <label for="fname">First Name</label><br>
+    <input type="text" id="fname" name="fname" formControlName="firstname" required><br>
 
+    <label for="lname">Last Name</label><br>
+    <input type="text" id="lname" name="lname" formControlName="lastname" required><br>
+
+    <label for="lname">Address</label><br>
+    <input type="text" id="address" name="address" formControlName="address" required><br><br>
+
+    <button [disabled]="!this.userForm.valid" class="button-orange" (click)="confirmBooking()">Confirm booking</button>
+    <button class="button-red" (click)="closePopup()">Close booking modal</button>
+  </div>
 </div>

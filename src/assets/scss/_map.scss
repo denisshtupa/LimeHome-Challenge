@@ -6,6 +6,11 @@
   position: relative;
   top: -237px;
   left: -6px;
+
+  .wrapper {
+    padding-right: 10px;
+    margin-right: 10px
+  }
 }
 
 
@@ -13,7 +18,7 @@
   display: grid;
   grid-template-columns: 136px 134px;
   grid-template-rows: 148px 55px;
-  grid-template-areas: "one two" "three three";
+  grid-template-areas: "one two""three three";
   position: relative;
 }
 
@@ -93,4 +98,55 @@
   &:hover {
     opacity: 0.75;
   }
+
+  &:disabled {
+    opacity: 0.4
+  }
+}
+
+.button-red {
+  display: inline-block;
+  background-color: $db-red !important;
+  color: black;
+  width: 92%;
+  margin-top: 10px;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid $db-status-yellow;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  cursor: pointer;
+  line-height: 1.5;
+  border-radius: .25rem;
+
+  &:hover {
+    opacity: 0.75;
+  }
+
+  &:disabled {
+    opacity: 0.4
+  }
+}
+
+
+.book-form {
+  max-width: 450px;
+  min-height: 500px;
+  position: relative;
+  top: -900px;
+  left: 210px;
+  padding: 30px;
+  margin: 20px;
+  background-color: #f2fbfd;
+  z-index: 2000;
+}
+
+
+input[type=text] {
+  width: 80%;
+  padding: 20px 20px;
+  margin: 15px 15px;
+  font-size: 20px;
+  box-sizing: border-box;
+  text-align: center
 }
