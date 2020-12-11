@@ -3,10 +3,10 @@ const path = require('path');
 
 const app = express();
 
-app.use(express.static('./dist/lime-home-challenge'));
+app.use(express.static('./dist/LimeHome-Challenge'));
 
 app.get('/*', function(req, res) {
-  res.sendFile('index.html', {root: 'dist/lime-home-challenge/'}
+  res.sendFile('index.html', {root: 'dist/LimeHome-Challenge/'}
 );
 });
 
