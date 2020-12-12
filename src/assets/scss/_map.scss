@@ -7,10 +7,10 @@
   top: -237px;
   left: -6px;
 
-  .wrapper {
-    padding-right: 10px;
-    margin-right: 10px
-  }
+  // .wrapper {
+  //   padding-right: 10px;
+  //   margin-right: 10px
+  // }
 }
 
 
@@ -128,25 +128,34 @@
   }
 }
 
-
 .book-form {
-  max-width: 450px;
-  min-height: 500px;
+  height: 530px;
+  width: 300px;
+  border-radius: 8px;
+  margin-left: 5px;
   position: relative;
-  top: -900px;
-  left: 210px;
-  padding: 30px;
-  margin: 20px;
+  top: -885px;
   background-color: #f2fbfd;
-  z-index: 2000;
+  z-index: 1;
 }
 
+.button-form-container {
+  padding-top: 40px;
+  width: 71%;
+  position: relative;
+  left: 14%;
+}
 
 input[type=text] {
   width: 80%;
-  padding: 20px 20px;
+  padding: 10px 20px;
   margin: 15px 15px;
-  font-size: 20px;
   box-sizing: border-box;
-  text-align: center
+  text-align: center;
+}
+
+.form-field {
+  font-size: 22px;
+  padding: 5px 15px;
+  margin: 5px 15px;
 }

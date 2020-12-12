@@ -1,4 +1,4 @@
-<div #map style="height:700px;width:900px"></div>
+<div #map style="height:700px;"></div>
 
 <div class="card-container">
   <div class="wrapper" *ngFor="let hotelsObject of this.hotelsObjectArray; let idx;" [id]="hotelsObject.id"
@@ -20,18 +20,27 @@
 </div>
 
 <div class="book-form" [style.display]="this.display">
-  <p>Please insert your personal information:</p>
+  <h2 style="text-align: center;">Please fill the form</h2>
   <div [formGroup]="this.userForm">
-    <label for="fname">First Name</label><br>
-    <input type="text" id="fname" name="fname" formControlName="firstname" required><br>
+    <div class="form-field">
+      <label for="fname">First Name</label>
+      <input type="text" id="fname" name="fname" formControlName="firstname" required>
+    </div>
 
-    <label for="lname">Last Name</label><br>
-    <input type="text" id="lname" name="lname" formControlName="lastname" required><br>
+    <div class="form-field">
+      <label for="lname">Last Name</label>
+      <input type="text" id="lname" name="lname" formControlName="lastname" required>
+    </div>
 
-    <label for="lname">Address</label><br>
-    <input type="text" id="address" name="address" formControlName="address" required><br><br>
+    <div class="form-field">
+      <label for="lname">Address</label>
+      <input type="text" id="address" name="address" formControlName="address" required>
+    </div>
 
-    <button [disabled]="!this.userForm.valid" class="button-orange" (click)="confirmBooking()">Confirm booking</button>
-    <button class="button-red" (click)="closePopup()">Close booking modal</button>
+    <div class="button-form-container">
+      <button [disabled]="!this.userForm.valid" class="button-orange" (click)="confirmBooking()">Confirm
+        booking</button>
+      <button class="button-red" (click)="closePopup()">Close booking modal</button>
+    </div>
   </div>
 </div>

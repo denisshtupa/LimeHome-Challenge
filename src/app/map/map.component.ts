@@ -14,8 +14,9 @@ declare var $: any;
 export class MapComponent implements AfterViewInit {
   @ViewChild("map") mapRef: ElementRef;
 
-  private centerMunich: Object = { lat: 48.137154, lng: 11.576124 };
+  private centerMunich: Object = { lat: 48.137144, lng: 11.576134 };
   public map: Object;
+  private marker: any;
   public display: string = "none";
   public userForm: FormGroup;
 
@@ -27,39 +28,57 @@ export class MapComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.map = new google.maps.Map(this.mapRef.nativeElement, {
+
+    let markers = [];
+    var map = new google.maps.Map(this.mapRef.nativeElement, {
       zoom: 12,
-      center: this.centerMunich
+      center: this.centerMunich,
     });
 
     for (var i = 0; i < this.locationsMunich.length; i++) {
-      let marker = new google.maps.Marker({
-        position: new google.maps.LatLng(this.locationsMunich[i][1], this.locationsMunich[i][2]),
+      this.marker = new google.maps.Marker({
+        position: new google.maps.LatLng(
+          this.locationsMunich[i][1],
+          this.locationsMunich[i][2]
+        ),
         options: {
           icon: {
             url: this.locationsMunich[i][4],
-            scaledSize: new google.maps.Size(30, 30)
-          }
+            scaledSize: new google.maps.Size(30, 30),
+          },
         },
-        map: this.map
+        id: i,
+        map: map,
+        visible: true,
       });
 
-      google.maps.event.addListener(marker, 'click', (function (marker, i) {
-        
-        return function () {          
-          marker.setIcon("assets/img/design_assets_home-icon-active.svg");
-          let arrayIndexes: number[] = [0, 1, 2];
-          arrayIndexes = arrayIndexes.filter(el => el != i);
-          arrayIndexes.forEach(nr => {
-            $('#' + nr).hide();
-          })
-          $('#' + i).show();
-        }
+      google.maps.event.addListener(
+        this.marker,
+        'click',
+        (function (marker, i) {
+          markers.push(marker);
+          return function () {
+            let arrayIndexes: number[] = [0, 1, 2];
+            arrayIndexes = arrayIndexes.filter((el) => el != i);
+            arrayIndexes.forEach((nr) => {
+              $('#' + nr).hide();
+            });
 
-      })(marker, i));
+            markers.forEach(point => {
+              if (point.id == marker.id) {
+                point.icon.url = 'assets/img/design_assets_home-icon-active.svg';
+              } else {
+                point.icon.url = 'assets/img/design_assets_home-icon.svg';
+              }
+            })
+
+            map.panTo(marker.getPosition());
+            $('#' + i).show();
+          };
+        })(this.marker, i)
+      );
     }
   }
-
 
   public openBookModal(): void {
     this.display = "block";
