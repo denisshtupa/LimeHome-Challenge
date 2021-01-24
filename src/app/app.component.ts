@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
-  public title: string = 'LimeHome-Challenge';
+  public title: string = 'google-map-ng';
 
 }
